@@ -17,6 +17,14 @@ export default {
       meta: {
         title: $t("menus.hsAbout")
       }
+    },
+    {
+      path: "/about/test",
+      name: "test",
+      component: () => import("@/views/testdemo/index.vue"),
+      meta: {
+        title: $t("menus.hsAbout")
+      }
     }
   ]
 } satisfies RouteConfigsTable;

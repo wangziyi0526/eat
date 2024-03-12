@@ -8,7 +8,7 @@ import { useEcharts } from "@/plugins/echarts";
 import { createApp, type Directive } from "vue";
 import { useElementPlus } from "@/plugins/elementPlus";
 import { injectResponsiveStorage } from "@/utils/responsive";
-
+import { axios } from "@/axios/axios";
 import Table from "@pureadmin/table";
 import PureDescriptions from "@pureadmin/descriptions";
 

@@ -20,12 +20,17 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     },
     // 服务端渲染
     server: {
-      // 端口号
-      port: VITE_PORT,
       host: "0.0.0.0",
-      // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
-      proxy: {},
-      // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布
+      port: 3000,
+      proxy: {
+        "/dev-api": {
+          //target是代理的目标路径
+          target: "http://192.168.147.195:3000",
+          changeOrigin: true, //必须要开启跨域
+          rewrite: path => path.replace(/\/dev-api/, "") // 路径重写
+        }
+      },
+
       warmup: {
         clientFiles: ["./index.html", "./src/{views,components}/*"]
       }
