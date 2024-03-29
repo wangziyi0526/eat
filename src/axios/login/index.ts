@@ -23,15 +23,13 @@ namespace Login {
 }
 // 用户登录
 export const login = (params: Login.LoginReqForm) => {
-  return axios.get<Login.LoginResData>("/HongLangMan/girl");
+  return axios.get<Login.LoginResData>("/api/girl");
 };
 // 增加女孩
 export const addGirl = (params: Login.girlInfo) => {
-  return axios.post<Login.LoginResData>("/HongLangMan/girl/add", params);
+  return axios.post<Login.LoginResData>("/api/girl/add", params);
 };
 // 查询女孩
 export const getGirl = (params: number) => {
-  return axios.get<Login.LoginResData>(
-    `/HongLangMan/girl/getGirlById?id=${params}`
-  );
+  return axios.get<Login.LoginResData>(`/api/girl/getGirlById?id=${params}`);
 };

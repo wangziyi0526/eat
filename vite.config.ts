@@ -25,7 +25,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       proxy: {
         "/dev-api": {
           //target是代理的目标路径
-          target: "http://192.168.147.195:3000",
+          target: "http://192.168.156.16:3028",
           changeOrigin: true, //必须要开启跨域
           rewrite: path => path.replace(/\/dev-api/, "") // 路径重写
         }
