@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, toRefs, reactive, computed, watch, onMounted } from "vue";
-import { login, addGirl, getGirl } from "../../axios/login";
+import { login, addGirl, getGirl, addUser } from "../../axios/login";
 import { id } from "element-plus/es/locale/index.mjs";
 const message = ref<string>("hello world");
 
@@ -30,9 +30,30 @@ const GetGirl = async () => {
   console.log(data);
 };
 GetGirl();
+
+const info = reactive({
+  name: "",
+  pwd: ""
+});
+const createUser = async () => {
+  const data = await addUser(info);
+  console.log(data);
+};
 </script>
 <template>
   <div class="testDemo">{{ message }}</div>
+  <el-input
+    v-model="info.name"
+    style="width: 240px"
+    placeholder="Please input"
+  />
+  <el-input
+    v-model="info.pwd"
+    style="width: 240px"
+    placeholder="Please input"
+    password
+  />
+  <el-button @click="createUser">点击</el-button>
 </template>
 
 <style scoped lang="sass"></style>

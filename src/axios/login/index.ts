@@ -20,7 +20,13 @@ namespace Login {
     // email: string;
     // description: string;
   }
+
+  export interface userInfo {
+    name: string;
+    pwd: string;
+  }
 }
+
 // 用户登录
 export const login = (params: Login.LoginReqForm) => {
   return axios.get<Login.LoginResData>("/api/girl");
@@ -32,4 +38,8 @@ export const addGirl = (params: Login.girlInfo) => {
 // 查询女孩
 export const getGirl = (params: number) => {
   return axios.get<Login.LoginResData>(`/api/girl/getGirlById?id=${params}`);
+};
+// 新增用户
+export const addUser = (params: Login.userInfo) => {
+  return axios.post<Login.LoginResData>("/api/user/createUser", params);
 };
