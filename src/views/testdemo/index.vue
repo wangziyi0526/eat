@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { ref, toRefs, reactive, computed, watch, onMounted } from "vue";
-import { login, addGirl, getGirl, addUser } from "../../axios/login";
-import { id } from "element-plus/es/locale/index.mjs";
+import {
+  login,
+  addGirl,
+  getGirl,
+  addUser,
+  getUserList
+} from "../../axios/login";
 const message = ref<string>("hello world");
 
 const loginForm = reactive({
@@ -37,23 +42,39 @@ const info = reactive({
 });
 const createUser = async () => {
   const data = await addUser(info);
-  console.log(data);
 };
+let tableData: any = ref([]);
+// let tableData: any = reactive([]);
+
+let getList = async () => {
+  let d = await getUserList();
+  tableData.value = d.data;
+  // tableData = d.data;
+};
+getList();
 </script>
 <template>
-  <div class="testDemo">{{ message }}</div>
-  <el-input
-    v-model="info.name"
-    style="width: 240px"
-    placeholder="Please input"
-  />
-  <el-input
-    v-model="info.pwd"
-    style="width: 240px"
-    placeholder="Please input"
-    password
-  />
-  <el-button @click="createUser">点击</el-button>
+  <div>
+    <div class="testDemo">{{ message }}</div>
+    <el-input
+      v-model="info.name"
+      style="width: 240px"
+      placeholder="Please input"
+    />
+    <el-input
+      v-model="info.pwd"
+      style="width: 240px"
+      placeholder="Please input"
+      password
+    />
+    <el-button @click="createUser">点击</el-button>
+
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="id" label="id" />
+      <el-table-column prop="name" label="name" />
+      <el-table-column prop="pwd" label="pwd" />
+    </el-table>
+  </div>
 </template>
 
 <style scoped lang="sass"></style>

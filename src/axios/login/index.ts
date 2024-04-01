@@ -43,3 +43,7 @@ export const getGirl = (params: number) => {
 export const addUser = (params: Login.userInfo) => {
   return axios.post<Login.LoginResData>("/api/user/createUser", params);
 };
+// 查询用户列表
+export const getUserList = () => {
+  return axios.get("/api/user/findUserLists");
+};
