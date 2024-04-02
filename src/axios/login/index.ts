@@ -47,3 +47,11 @@ export const addUser = (params: Login.userInfo) => {
 export const getUserList = () => {
   return axios.get("/api/user/findUserLists");
 };
+// 更新用户信息
+export const updateUserInfo = params => {
+  return axios.post("/api/user/updateUserInfo", params);
+};
+// 删除用户
+export const deleteUser = params => {
+  return axios.post("/api/user/deleteUser", params);
+};
