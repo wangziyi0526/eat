@@ -40,7 +40,7 @@ export const getGirl = (params: number) => {
   return axios.get<Login.LoginResData>(`/api/girl/getGirlById?id=${params}`);
 };
 // 新增用户
-export const addUser = (params: Login.userInfo) => {
+export const addUser = params => {
   return axios.post<Login.LoginResData>("/api/user/createUser", params);
 };
 // 查询用户列表

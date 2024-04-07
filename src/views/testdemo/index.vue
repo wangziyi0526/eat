@@ -12,6 +12,9 @@ import {
 
 import { ElMessage, ElMessageBox } from "element-plus";
 
+// 注册
+import Register from "./component/Register.vue";
+
 const message = ref<string>("hello world");
 
 const info = reactive({
@@ -64,8 +67,9 @@ let dialogFormVisible = ref(false);
 const formLabelWidth = "140px";
 
 let form = reactive({
-  name: "",
-  pwd: ""
+  username: "",
+  nickname: "",
+  password: ""
 });
 const editItem = data => {
   title.value = "编辑";
@@ -85,30 +89,22 @@ const updateItem = async () => {
 
 // 重置表单项
 const resetFields = () => {
-  form.name = "";
-  form.pwd = "";
+  form.username = "";
+  form.nickname = "";
+  form.password = "";
 };
 </script>
 <template>
   <div>
     <div class="testDemo">{{ message }}</div>
-    <el-input
-      v-model="info.name"
-      style="width: 240px"
-      placeholder="Please input"
-    />
-    <el-input
-      v-model="info.pwd"
-      style="width: 240px"
-      placeholder="Please input"
-      password
-    />
-    <el-button @click="createUser">点击</el-button>
+
     <el-button type="primary" @click="addUserOpen">新增</el-button>
     <el-table :data="tableData.list" style="width: 100%">
       <el-table-column prop="id" label="id" />
-      <el-table-column prop="name" label="name" />
-      <el-table-column prop="pwd" label="pwd" />
+      <el-table-column prop="username" label="username" />
+      <el-table-column prop="nickname" label="nickname" />
+      <el-table-column prop="password" label="password" />
+
       <el-table-column fixed="right" label="Operations" width="120">
         <template #default="scope">
           <el-button
@@ -131,11 +127,14 @@ const resetFields = () => {
 
     <el-dialog v-model="dialogFormVisible" :title="title" width="500" draggable>
       <el-form :model="form" @resetFields="resetFields">
-        <el-form-item label="name" :label-width="formLabelWidth">
-          <el-input v-model.trim="form.name" autocomplete="off" />
+        <el-form-item label="username" :label-width="formLabelWidth">
+          <el-input v-model.trim="form.username" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="Zones" :label-width="formLabelWidth">
-          <el-input v-model.trim="form.pwd" autocomplete="off" />
+        <el-form-item label="nickname" :label-width="formLabelWidth">
+          <el-input v-model.trim="form.nickname" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="password" :label-width="formLabelWidth">
+          <el-input v-model.trim="form.password" autocomplete="off" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -145,6 +144,8 @@ const resetFields = () => {
         </div>
       </template>
     </el-dialog>
+
+    <Register />
   </div>
 </template>
 
