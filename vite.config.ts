@@ -21,7 +21,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     // 服务端渲染
     server: {
       host: "0.0.0.0",
-      port: 3000,
+      port: VITE_PORT,
       proxy: {
         "/dev-api": {
           //target是代理的目标路径
